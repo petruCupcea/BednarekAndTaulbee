@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -6,5 +8,7 @@ public class Main {
         obj.readPeaksAdj();
         obj.setNoAdjArray(4);
         obj.printNoAdjArray();
+
+
     }
 }

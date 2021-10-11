@@ -56,6 +56,7 @@ public class Graph {
 
     }
 
+    //functia de stergere a unui element
     void deleteArrayIndex(int[] array, int k) {
         for (int i = k; i < array.length - 1; i++) {
             array[i] = array[i+1];
