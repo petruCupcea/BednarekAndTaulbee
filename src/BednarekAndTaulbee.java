@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class BednarekAndTaulbee extends Graph{
     int[] peaksArray;
     int[] stableSets;
@@ -18,22 +16,22 @@ public class BednarekAndTaulbee extends Graph{
     void setNoAdjArray( int k) {
         int index;
 
-        int t = 0;
+        int temp = 0;
         this.initPeaksArray(k);
 
         for(int i = 0; i < this.adjArray.get(k).size(); i++) {
             for (int j = 0; j < this.peaksArray.length; j++) {
                 if (this.adjArray.get(k).get(i) == this.peaksArray[j]) {
                     this.deleteArrayIndex(this.peaksArray, j);
-                    t++;
+                    temp++;
                 }
 
             }
         }
 //creez matricea Yk prin copierea din array-ul modificat Xk minus nr de elemente care au fost sterse
-        this.noAdjArray = new int[this.peaksArray.length - t];
+        this.noAdjArray = new int[this.peaksArray.length - temp];
 
-        for (int i = 0; i < this.peaksArray.length - t; i++){
+        for (int i = 0; i < this.peaksArray.length - temp; i++){
             this.noAdjArray[i] = this.peaksArray[i];
         }
 
