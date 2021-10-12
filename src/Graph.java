@@ -10,15 +10,27 @@ public class Graph {
     ArrayList<ArrayList<Integer>> adjArray;
     int numberOfPeaks;
     int numberOfEdges;
+    int[][] adjacencyMatrix;
+    int[] peaksArray;
 
 
-    //functia care adauga cate o muchie pas cu pas
+//crearea Xk care e un array de toate varfurile
+    void initPeaksArray(int k) {
+        this.peaksArray = new int[k+1];
+
+        for(int i = 0; i < k+1; i++) {
+            this.peaksArray[i] = i;
+        }
+    }
+
+
+//functia care adauga cate o muchie pas cu pas
      static void addEdge(ArrayList<ArrayList<Integer> > adjArray,int p1, int p2) {
          adjArray.get(p1).add(p2);
          adjArray.get(p2).add(p1);
     }
 
-    //afisearea varufurilor si adiagenta lor
+//afisearea varufurilor si adiagenta lor
     static void printPeaksAdj(ArrayList<ArrayList<Integer> > adjArray) {
         for (int i = 0; i < adjArray.size(); i++) {
             System.out.println("\n Varfurile adiacente cu varful " + i);
@@ -30,7 +42,7 @@ public class Graph {
         }
     }
 
-    //functia de citire a adiacentei varfurilor impreun cu nr de varfuri si nr de muchii
+//functia de citire a adiacentei varfurilor impreun cu nr de varfuri si nr de muchii
     void readPeaksAdj() {
         this.adjArray = new  ArrayList<ArrayList<Integer>>(this.numberOfPeaks);
         int peak1 = 0,peak2 = 0;
@@ -56,10 +68,12 @@ public class Graph {
 
     }
 
-    //functia de stergere a unui element
+//functia de stergere a unui element
     void deleteArrayIndex(int[] array, int k) {
         for (int i = k; i < array.length - 1; i++) {
             array[i] = array[i+1];
         }
     }
+
+
 }

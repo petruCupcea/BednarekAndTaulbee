@@ -1,16 +1,8 @@
 public class BednarekAndTaulbee extends Graph{
-    int[] peaksArray;
+
     int[] stableSets;
     int[] noAdjArray;
 
-//crearea Xk care e un array de toate varfurile
-    void initPeaksArray(int k) {
-        this.peaksArray = new int[k+1];
-
-        for(int i = 0; i < k+1; i++) {
-           this.peaksArray[i] = i;
-        }
-    }
 
 //functia de creare a multimii Yk in dependenta de iteratia k
     void setNoAdjArray( int k) {
