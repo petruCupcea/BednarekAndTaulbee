@@ -10,7 +10,6 @@ public class Graph {
     ArrayList<ArrayList<Integer>> adjArray;
     int numberOfPeaks;
     int numberOfEdges;
-    int[][] adjacencyMatrix;
     int[] peaksArray;
 
 
