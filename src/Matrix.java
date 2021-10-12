@@ -4,6 +4,7 @@ public class Matrix extends Graph{
     int[][] kirchhoffMatrix;
 
 
+
 //functia de transformare in matricea de adiacenta a listei de array-uri adjArray
     void setAdjacencyMatrix() {
         this.initPeaksArray(this.numberOfPeaks);
@@ -27,22 +28,60 @@ public class Matrix extends Graph{
     }
 
 
+
+
 //Matricea lui Khirchoff din adiacenta
     void setKirchhoffMatrix() {
       this.kirchhoffMatrix = new int[this.numberOfPeaks][this.numberOfPeaks];
+      int[] array = new int[numberOfPeaks];
+
+      for(int i = 0; i < this.numberOfPeaks; i++) {
+          int temp = 0;
+          for (int j = 0; j < this.numberOfPeaks; j++) {
+              if (this.adjacencyMatrix[i][j] == 1) {
+                  temp++;
+                  array[i] = temp;
+              }
+          }
+      }
 
       for(int i = 0; i < this.numberOfPeaks; i++) {
           for(int j = 0; j < this.numberOfPeaks; j++) {
-              if( i == j ) {
-                  this.kirchhoffMatrix[i][j] = this.adjArray.get(i).size();
-              } else {
+              if( i == j) {
+                  this.kirchhoffMatrix[i][j] = array[i];
+              }  else {
                   this.kirchhoffMatrix[i][j] = this.adjacencyMatrix[i][j] * -1;
               }
           }
       }
 
+
       this.printMatrix(kirchhoffMatrix,"Kirchhoff");
     }
+
+
+
+
+//    //Matricea lui Khirchoff din adiacenta
+//    void setKirchhoffMatrix() {
+//        this.kirchhoffMatrix = new int[this.numberOfPeaks][this.numberOfPeaks];
+//
+//        for(int i = 0; i < this.numberOfPeaks; i++) {
+//            for(int j = 0; j < this.numberOfPeaks; j++) {
+//                if( i == j ) {
+//                    this.kirchhoffMatrix[i][j] = this.adjArray.get(i).size();
+//                } else {
+//                    this.kirchhoffMatrix[i][j] = this.adjacencyMatrix[i][j] * -1;
+//                }
+//            }
+//        }
+//
+//        this.printMatrix(kirchhoffMatrix,"Kirchhoff");
+//    }
+
+
+//Matricea de incidenta
+
 
 
 //functia de afisare pentru matricea de adiacenta si Khirchoff
