@@ -3,7 +3,7 @@ public class Matrix extends Graph{
 
 
 
-    //functia de transformare in matricea de adiacenta a listei de array-uri adjArray
+//functia de transformare in matricea de adiacenta a listei de array-uri adjArray
     void setAdjacencyMatrix() {
         this.initPeaksArray(this.numberOfPeaks);
         int temp = 0;
@@ -25,7 +25,7 @@ public class Matrix extends Graph{
         printMatrix(adjacencyMatrix);
     }
 
-    //functia de afisare pentru matricea de adiacenta si incidenta
+//functia de afisare pentru matricea de adiacenta si incidenta
     void printMatrix(int[][] matrix) {
         for(int i = 0; i < this.numberOfPeaks; i++) {
             for(int j = 0; j < this.numberOfPeaks; j++) {
