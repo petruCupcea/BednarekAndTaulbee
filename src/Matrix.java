@@ -2,6 +2,7 @@ public class Matrix extends Graph{
 
     int[][] adjacencyMatrix;
     int[][] kirchhoffMatrix;
+    int[][] incidentMatrix;
 
 
 
@@ -32,12 +33,12 @@ public class Matrix extends Graph{
 
 //Matricea lui Khirchoff din adiacenta
     void setKirchhoffMatrix() {
-      this.kirchhoffMatrix = new int[this.numberOfPeaks][this.numberOfPeaks];
-      int[] array = new int[numberOfPeaks];
+      this.kirchhoffMatrix = new int[this.adjacencyMatrix[0].length][this.adjacencyMatrix[0].length];
+      int[] array = new int[this.adjacencyMatrix[0].length];
 
-      for(int i = 0; i < this.numberOfPeaks; i++) {
+      for(int i = 0; i < this.adjacencyMatrix[0].length; i++) {
           int temp = 0;
-          for (int j = 0; j < this.numberOfPeaks; j++) {
+          for (int j = 0; j < this.adjacencyMatrix[0].length; j++) {
               if (this.adjacencyMatrix[i][j] == 1) {
                   temp++;
                   array[i] = temp;
@@ -45,8 +46,8 @@ public class Matrix extends Graph{
           }
       }
 
-      for(int i = 0; i < this.numberOfPeaks; i++) {
-          for(int j = 0; j < this.numberOfPeaks; j++) {
+      for(int i = 0; i < this.adjacencyMatrix[0].length; i++) {
+          for(int j = 0; j < this.adjacencyMatrix[0].length; j++) {
               if( i == j) {
                   this.kirchhoffMatrix[i][j] = array[i];
               }  else {
@@ -58,8 +59,6 @@ public class Matrix extends Graph{
 
       this.printMatrix(kirchhoffMatrix,"Kirchhoff");
     }
-
-
 
 
 //    //Matricea lui Khirchoff din adiacenta
@@ -79,9 +78,45 @@ public class Matrix extends Graph{
 //        this.printMatrix(kirchhoffMatrix,"Kirchhoff");
 //    }
 
-
 //Matricea de incidenta
+      void setIncidentMatrix() {
+        int edges = 0;
+        int[][] tempMatrix = new int[this.adjacencyMatrix.length][this.adjacencyMatrix[0].length];
+//creez o matrice temporara pentru a fi modificata
+        tempMatrix = adjacencyMatrix;
 
+//pentru valorile mai sus de diagonala le inmultesc cu j pentru a obtine carui varf ii apartine
+        for(int i = 0; i < this.adjacencyMatrix.length;i++) {
+            for(int j = i + 1; j < this.adjacencyMatrix[i].length; j++) {
+                tempMatrix[i][j] = tempMatrix[i][j] * j;
+            }
+        }
+
+
+//        aflu numarul de muchii din matricea de adiacenta
+        for (int i = 0; i < tempMatrix.length; i++) {
+            for (int j = i + 1; j < tempMatrix[i].length; j++) {
+                if( tempMatrix[i][j] > 0) {
+                    edges++;
+                }
+            }
+        }
+
+//        initializam matricea de incidenta incat deja avem numarul de muchii si o construim
+        this.incidentMatrix = new int[this.adjacencyMatrix.length][edges];
+
+          for (int i = 0; i < tempMatrix.length; i++) {
+              for (int j = i + 1; j < tempMatrix[i].length; j++) {
+                  int edgeNumber = tempMatrix[i][j];
+
+                  if(edgeNumber  > 0 ) {
+                      this.incidentMatrix[i][edgeNumber - 1] = 1;
+                      this.incidentMatrix[j][edgeNumber - 1] = 1;
+                  }
+              }
+          }
+        printIncidentMatrix();
+      }
 
 
 //functia de afisare pentru matricea de adiacenta si Khirchoff
@@ -97,6 +132,17 @@ public class Matrix extends Graph{
                 }
             }
             System.out.println("");
+        }
+    }
+
+//    functia de afisare a matricii de incidenta
+    void printIncidentMatrix() {
+        System.out.println("Incident");
+        for(int i = 0; i < this.incidentMatrix.length; i++) {
+          for(int j = 0; j < this.incidentMatrix[i].length; j++) {
+              System.out.print("  " + this.incidentMatrix[i][j]);
+          }
+          System.out.println("");
         }
     }
 

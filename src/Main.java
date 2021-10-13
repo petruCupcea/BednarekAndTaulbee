@@ -14,6 +14,7 @@ public class Main {
         obj1.readPeaksAdj();
         obj1.setAdjacencyMatrix();
         obj1.setKirchhoffMatrix();
+        obj1.setIncidentMatrix();
 
     }
 }

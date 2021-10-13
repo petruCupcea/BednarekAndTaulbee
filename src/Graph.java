@@ -11,6 +11,7 @@ public class Graph {
     int numberOfPeaks;
     int numberOfEdges;
     int[] peaksArray;
+    int[] edgesArray;
 
 
 //crearea Xk care e un array de toate varfurile
@@ -22,6 +23,14 @@ public class Graph {
         }
     }
 
+//    Crearea unui array in care va fi numarul de muchii
+void initPeaksArray() {
+    this.peaksArray = new int[this.numberOfEdges];
+
+    for(int i = 0; i < this.numberOfEdges; i++) {
+        this.peaksArray[i] = i;
+    }
+}
 
 //functia care adauga cate o muchie pas cu pas
      static void addEdge(ArrayList<ArrayList<Integer> > adjArray,int p1, int p2) {
