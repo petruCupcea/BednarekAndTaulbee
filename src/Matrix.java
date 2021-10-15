@@ -91,7 +91,7 @@ public class Matrix extends Graph{
                 tempMatrix[i][j] = tempMatrix[i][j] * j;
             }
         }
-
+        this.printMatrix(tempMatrix , "temp");
 
 //        aflu numarul de muchii din matricea de adiacenta
         for (int i = 0; i < tempMatrix.length; i++) {

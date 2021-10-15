@@ -11,7 +11,7 @@ public class Graph {
     int numberOfPeaks;
     int numberOfEdges;
     int[] peaksArray;
-    int[] edgesArray;
+    int[][] edgesArray;
 
 
 //crearea Xk care e un array de toate varfurile
@@ -23,14 +23,14 @@ public class Graph {
         }
     }
 
-//    Crearea unui array in care va fi numarul de muchii
-void initPeaksArray() {
-    this.peaksArray = new int[this.numberOfEdges];
+     void setEdgesArray(int temp, int p1, int p2) {
+        this.edgesArray = new int[2][this.numberOfEdges];
+        int i = 0;
 
-    for(int i = 0; i < this.numberOfEdges; i++) {
-        this.peaksArray[i] = i;
+        this.edgesArray[temp][i] = p1;
+        this.edgesArray[temp][i+1] = p2;
+
     }
-}
 
 //functia care adauga cate o muchie pas cu pas
      static void addEdge(ArrayList<ArrayList<Integer> > adjArray,int p1, int p2) {
@@ -70,6 +70,8 @@ void initPeaksArray() {
             System.out.println("Dati al doilea varf");
             peak2 = scan.nextInt();
             Graph.addEdge(this.adjArray,peak1,peak2);
+            this.setEdgesArray(i,peak1,peak2);
+
         }
 
         Graph.printPeaksAdj(this.adjArray);
