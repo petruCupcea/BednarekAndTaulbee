@@ -23,15 +23,6 @@ public class Graph {
         }
     }
 
-     void setEdgesArray(int temp, int p1, int p2) {
-        this.edgesArray = new int[2][this.numberOfEdges];
-        int i = 0;
-
-        this.edgesArray[temp][i] = p1;
-        this.edgesArray[temp][i+1] = p2;
-
-    }
-
 //functia care adauga cate o muchie pas cu pas
      static void addEdge(ArrayList<ArrayList<Integer> > adjArray,int p1, int p2) {
          adjArray.get(p1).add(p2);
@@ -63,19 +54,22 @@ public class Graph {
         for (int i = 0; i < numberOfPeaks; i++)
             this.adjArray.add(new ArrayList<Integer>());
 
+        this.edgesArray = new int[this.numberOfEdges][2];
+
         for (int i = 0; i < numberOfEdges; i++) {
             System.out.print(i + ". ");
             System.out.println("Dati primul varf");
             peak1 = scan.nextInt();
             System.out.println("Dati al doilea varf");
             peak2 = scan.nextInt();
+
+            this.edgesArray[i][0] = peak1;
+            this.edgesArray[i][1] = peak2;
+
             Graph.addEdge(this.adjArray,peak1,peak2);
-            this.setEdgesArray(i,peak1,peak2);
 
         }
-
         Graph.printPeaksAdj(this.adjArray);
-
     }
 
 //functia de stergere a unui element
@@ -84,6 +78,5 @@ public class Graph {
             array[i] = array[i+1];
         }
     }
-
 
 }
