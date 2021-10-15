@@ -80,42 +80,19 @@ public class Matrix extends Graph{
 
 //Matricea de incidenta
       void setIncidentMatrix() {
-        int edges = 0;
-        int[][] tempMatrix = new int[this.adjacencyMatrix.length][this.adjacencyMatrix[0].length];
-//creez o matrice temporara pentru a fi modificata
-        tempMatrix = adjacencyMatrix;
+        this.incidentMatrix = new int[this.numberOfEdges][this.numberOfPeaks];
 
-//pentru valorile mai sus de diagonala le inmultesc cu j pentru a obtine carui varf ii apartine
-        for(int i = 0; i < this.adjacencyMatrix.length;i++) {
-            for(int j = i + 1; j < this.adjacencyMatrix[i].length; j++) {
-                tempMatrix[i][j] = tempMatrix[i][j] * j;
-            }
-        }
-        this.printMatrix(tempMatrix , "temp");
-
-//        aflu numarul de muchii din matricea de adiacenta
-        for (int i = 0; i < tempMatrix.length; i++) {
-            for (int j = i + 1; j < tempMatrix[i].length; j++) {
-                if( tempMatrix[i][j] > 0) {
-                    edges++;
+        for(int i = 0;i < this.numberOfPeaks; i++) {
+            for(int j = 0; j < this.numberOfEdges; j++) {
+                if(this.edgesArray[i][0] == this.peaksArray[i] && this.edgesArray[i][1] == this.peaksArray[i]) {
+                   this.incidentMatrix[i][j] = 1;
+                } else {
+                    this.incidentMatrix[i][j] = 0;
                 }
             }
         }
 
-//        initializam matricea de incidenta incat deja avem numarul de muchii si o construim
-        this.incidentMatrix = new int[this.adjacencyMatrix.length][edges];
-
-          for (int i = 0; i < tempMatrix.length; i++) {
-              for (int j = i + 1; j < tempMatrix[i].length; j++) {
-                  int edgeNumber = tempMatrix[i][j];
-
-                  if(edgeNumber  > 0 ) {
-                      this.incidentMatrix[i][edgeNumber - 1] = 1;
-                      this.incidentMatrix[j][edgeNumber - 1] = 1;
-                  }
-              }
-          }
-        printIncidentMatrix();
+        this.printIncidentMatrix();
       }
 
 
