@@ -80,12 +80,14 @@ public class Matrix extends Graph{
 
 //Matricea de incidenta
       void setIncidentMatrix() {
-        this.incidentMatrix = new int[this.numberOfEdges][this.numberOfPeaks];
+        this.incidentMatrix = new int[this.numberOfPeaks][this.numberOfEdges];
 
         for(int i = 0;i < this.numberOfPeaks; i++) {
             for(int j = 0; j < this.numberOfEdges; j++) {
-                if(this.edgesArray[i][0] == this.peaksArray[i] && this.edgesArray[i][1] == this.peaksArray[i]) {
+                if(this.edgesArray[j][0] == i) {
                    this.incidentMatrix[i][j] = 1;
+                } else if (this.edgesArray[j][1] == i){
+                    this.incidentMatrix[i][j] = 1;
                 } else {
                     this.incidentMatrix[i][j] = 0;
                 }
