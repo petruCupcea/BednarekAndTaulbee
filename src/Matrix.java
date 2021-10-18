@@ -9,7 +9,7 @@ public class Matrix extends Graph{
 //functia de transformare in matricea de adiacenta a listei de array-uri adjArray
     void setAdjacencyMatrix() {
         this.initPeaksArray(this.numberOfPeaks);
-        int temp = 0;
+        int temp;
 
         this.adjacencyMatrix = new int[this.numberOfPeaks][this.numberOfPeaks];
 
@@ -32,7 +32,7 @@ public class Matrix extends Graph{
 
 
 //Matricea lui Khirchoff din adiacenta
-    void setKirchhoffMatrix() {
+    void kirchhoffMatrixFromAdjacency() {
       this.kirchhoffMatrix = new int[this.adjacencyMatrix[0].length][this.adjacencyMatrix[0].length];
       int[] array = new int[this.adjacencyMatrix[0].length];
 
@@ -57,26 +57,26 @@ public class Matrix extends Graph{
       }
 
 
-      this.printMatrix(kirchhoffMatrix,"Kirchhoff");
+      this.printMatrix(kirchhoffMatrix,"Kirchhoff1");
     }
 
 
-//    //Matricea lui Khirchoff din adiacenta
-//    void setKirchhoffMatrix() {
-//        this.kirchhoffMatrix = new int[this.numberOfPeaks][this.numberOfPeaks];
-//
-//        for(int i = 0; i < this.numberOfPeaks; i++) {
-//            for(int j = 0; j < this.numberOfPeaks; j++) {
-//                if( i == j ) {
-//                    this.kirchhoffMatrix[i][j] = this.adjArray.get(i).size();
-//                } else {
-//                    this.kirchhoffMatrix[i][j] = this.adjacencyMatrix[i][j] * -1;
-//                }
-//            }
-//        }
-//
-//        this.printMatrix(kirchhoffMatrix,"Kirchhoff");
-//    }
+    //Matricea lui Khirchoff
+    void setKirchhoffMatrix() {
+        this.kirchhoffMatrix = new int[this.numberOfPeaks][this.numberOfPeaks];
+
+        for(int i = 0; i < this.numberOfPeaks; i++) {
+            for(int j = 0; j < this.numberOfPeaks; j++) {
+                if( i == j ) {
+                    this.kirchhoffMatrix[i][j] = this.adjArray.get(i).size();
+                } else {
+                    this.kirchhoffMatrix[i][j] = this.adjacencyMatrix[i][j] * -1;
+                }
+            }
+        }
+
+        this.printMatrix(kirchhoffMatrix,"Kirchhoff2");
+    }
 
 //Matricea de incidenta
       void setIncidentMatrix() {
@@ -94,6 +94,22 @@ public class Matrix extends Graph{
             }
         }
 
+        this.printIncidentMatrix();
+      }
+
+      void incidentMatrixfromAdjacency() {
+        int k = 0;
+
+
+        for (int i = 0; i < this.numberOfPeaks; i++) {
+            for (int j = i; j < this.numberOfPeaks;j++) {
+                if (this.adjacencyMatrix[i][j] == 1) {
+                    this.incidentMatrix[i][k] = 1;
+                    this.incidentMatrix[j][k] = 1;
+                    k++;
+                }
+            }
+        }
         this.printIncidentMatrix();
       }
 
