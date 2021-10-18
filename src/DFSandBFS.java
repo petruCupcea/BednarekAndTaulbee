@@ -86,8 +86,7 @@ public class DFSandBFS extends Matrix{
         this.readPeaksForDFS();
         System.out.println("Dati varful de la care sa inceapa citirea in adancime: ");
         int peak = scan.nextInt();
-        //
-        //
+        //creez array-ul boolean pentru fiecare varf
         boolean visited[] = new boolean[this.numberOfPeaks];
 
         // Apel al utilitatea recursiva de afisare si de setare a varfului peak ca visited
@@ -95,10 +94,6 @@ public class DFSandBFS extends Matrix{
     }
 
         void readPeaksForDFS() {
-
-            System.out.println("Dati numarul de varfuri");
-
-
             this.readPeaksAdj();
             this.setAdjacencyMatrix();
             this.setKirchhoffMatrix();
