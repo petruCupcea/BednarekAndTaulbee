@@ -15,7 +15,6 @@ public class DFSandBFS extends Matrix{
           for (int i = 0; i < peaks; i++) {
               this.adj[i] = new LinkedList();
           }
-
         }
 
     void addEdgeDFS(int v, int w)
@@ -68,12 +67,10 @@ public class DFSandBFS extends Matrix{
 
     void DFSUtil(int v, boolean visited[])
     {
-        // Mark the current node as visited and print it
+        // seteaza varful curent cu visited adica true
         visited[v] = true;
         System.out.print(v + " ");
 
-        // Recur for all the vertices adjacent to this
-        // vertex
         Iterator<Integer> i = this.adj[v].listIterator();
         while (i.hasNext())
         {
@@ -83,18 +80,17 @@ public class DFSandBFS extends Matrix{
         }
     }
 
+//    functia de aflare si afisare a parcurgerii grafului in adancime
     void DFS()
     {
         this.readPeaksForDFS();
         System.out.println("Dati varful de la care sa inceapa citirea in adancime: ");
         int peak = scan.nextInt();
-        // Mark all the vertices as not visited(set as
-        // false by default in java)
+        //
+        //
         boolean visited[] = new boolean[this.numberOfPeaks];
 
-        // Call the recursive helper
-        // function to print DFS
-        // traversal
+        // Apel al utilitatea recursiva de afisare si de setare a varfului peak ca visited
         this.DFSUtil(peak, visited);
     }
 
