@@ -3,10 +3,39 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class DFSandBFS extends Graph{
+
+public class DFSandBFS extends Matrix{
+         LinkedList<Integer> adj[];
+         int allEdges;
+
+//initializez lista pentru DFS
+    void initList(int peaks) {
+
+          this.adj = new LinkedList[peaks];
+          for (int i = 0; i < peaks; i++) {
+              this.adj[i] = new LinkedList();
+          }
+
+        }
+
+    void addEdgeDFS(int v, int w)
+    {
+        this.adj[v].add(w); // Add w to v's list.
+    }
+
+    void setAllEdges() {
+        this.allEdges = 0;
+        for(int i = 0; i < this.numberOfPeaks; i++) {
+            for (int j = 0; j < this.numberOfPeaks; j++) {
+                if (i == j) {
+                    this.allEdges += this.kirchhoffMatrix[i][j];
+                }
+            }
+        }
+    }
 
 
-        // functia care returneaza masivul dupa parcurgerea in latimea a unui graf
+//      functia care returneaza masivul dupa parcurgerea in latimea a unui graf
         public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
             boolean visited[] = new boolean[V];
             Queue<Integer> q = new LinkedList<Integer>();
@@ -29,7 +58,7 @@ public class DFSandBFS extends Graph{
             return result;
         }
 
-
+//      functia de afisare a bfs
         void printBFS() {
             ArrayList<Integer> result = this.bfsOfGraph(this.numberOfPeaks, this.adjArray);
                     System.out.println("Rezultatul parcurgerii in latime:");
@@ -37,5 +66,58 @@ public class DFSandBFS extends Graph{
             }
 
 
+    void DFSUtil(int v, boolean visited[])
+    {
+        // Mark the current node as visited and print it
+        visited[v] = true;
+        System.out.print(v + " ");
+
+        // Recur for all the vertices adjacent to this
+        // vertex
+        Iterator<Integer> i = this.adj[v].listIterator();
+        while (i.hasNext())
+        {
+            int n = i.next();
+            if (!visited[n])
+                DFSUtil(n, visited);
+        }
+    }
+
+    void DFS()
+    {
+        this.readPeaksForDFS();
+        System.out.println("Dati varful de la care sa inceapa citirea in adancime: ");
+        int peak = scan.nextInt();
+        // Mark all the vertices as not visited(set as
+        // false by default in java)
+        boolean visited[] = new boolean[this.numberOfPeaks];
+
+        // Call the recursive helper
+        // function to print DFS
+        // traversal
+        this.DFSUtil(peak, visited);
+    }
+
+        void readPeaksForDFS() {
+
+            System.out.println("Dati numarul de varfuri");
+
+
+            this.readPeaksAdj();
+            this.setAdjacencyMatrix();
+            this.setKirchhoffMatrix();
+
+            this.initList(this.numberOfPeaks);
+            this.setAllEdges();
+            System.out.println("Dati toate varfurile si adiacenta lor 0 1 1 0 1 2 2 1 etc");
+
+
+              for(int i = 0; i < this.allEdges; i++) {
+                  System.out.println("Dati muchia: x, y");
+                  int x = scan.nextInt();
+                  int y = scan.nextInt();
+                  this.addEdgeDFS(x,y);
+              }
+        }
 }
 

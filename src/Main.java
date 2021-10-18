@@ -19,7 +19,9 @@ public class Main {
 //        obj1.setIncidentMatrix();
 //        obj1.incidentMatrixfromAdjacency();
 
-        obj2.readPeaksAdj();
-        obj2.printBFS();
+//        obj2.readPeaksAdj();
+//        obj2.printBFS();
+
+          obj2.DFS();
     }
 }

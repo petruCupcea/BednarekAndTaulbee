@@ -75,7 +75,7 @@ public class Matrix extends Graph{
             }
         }
 
-        this.printMatrix(kirchhoffMatrix,"Kirchhoff2");
+//        this.printMatrix(kirchhoffMatrix,"Kirchhoff2");
     }
 
 //Matricea de incidenta
