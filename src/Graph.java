@@ -58,9 +58,8 @@ public class Graph {
 
         for (int i = 0; i < numberOfEdges; i++) {
             System.out.print(i + ". ");
-            System.out.println("Dati primul varf");
+            System.out.println("Dati varfurile muchiei in ordine crescatoare ");
             peak1 = scan.nextInt();
-            System.out.println("Dati al doilea varf");
             peak2 = scan.nextInt();
 
             this.edgesArray[i][0] = peak1;

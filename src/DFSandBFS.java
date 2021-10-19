@@ -35,7 +35,8 @@ public class DFSandBFS extends Matrix{
 
 
 //      functia care returneaza masivul dupa parcurgerea in latimea a unui graf
-        public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
+    public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
+
             boolean visited[] = new boolean[V];
             Queue<Integer> q = new LinkedList<Integer>();
             // cream result pentru a pastra rezultatul
@@ -58,7 +59,7 @@ public class DFSandBFS extends Matrix{
         }
 
 //      functia de afisare a bfs
-        void printBFS() {
+    void printBFS() {
             ArrayList<Integer> result = this.bfsOfGraph(this.numberOfPeaks, this.adjArray);
                     System.out.println("Rezultatul parcurgerii in latime:");
                     System.out.println(result);
@@ -93,7 +94,7 @@ public class DFSandBFS extends Matrix{
         this.DFSUtil(peak, visited);
     }
 
-        void readPeaksForDFS() {
+    void readPeaksForDFS() {
             this.readPeaksAdj();
             this.setAdjacencyMatrix();
             this.setKirchhoffMatrix();

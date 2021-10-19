@@ -1,7 +1,8 @@
-public class BednarekAndTaulbee extends Graph{
+public class BednarekAndTaulbee extends Matrix{
 
     int[] stableSets;
     int[] noAdjArray;
+    int[] xJ;
 
 
 //functia de creare a multimii Yk in dependenta de iteratia k
@@ -32,9 +33,12 @@ public class BednarekAndTaulbee extends Graph{
 //afisare
     void printNoAdjArray() {
         for (int i = 0; i < this.noAdjArray.length; i++) {
-            System.out.println(this.noAdjArray[i]);
+            System.out.print(" " + this.noAdjArray[i] + " ");
         }
+        System.out.println();
+
     }
+
 
 }
 
