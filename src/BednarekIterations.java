@@ -26,28 +26,28 @@ public class BednarekIterations {
   }
 
   ArrayList<Integer> getYLine (ArrayList<Integer> inputDataLine, ArrayList<Integer> XLine) {
-      int tempValue = 0;
-      int[] XLineArray = new int[XLine.size()];
-      ArrayList<Integer> result = new ArrayList<Integer>();
+    int tempValue = 0;
+    int[] XLineArray = new int[XLine.size()];
+    ArrayList<Integer> result = new ArrayList<Integer>();
 
-      for (int i = 0; i < XLineArray.length; i++) {
-        XLineArray[i] = XLine.get(i);
-      }
+    for (int i = 0; i < XLineArray.length; i++) {
+      XLineArray[i] = XLine.get(i);
+    }
 
-       for(int i = 0; i < inputDataLine.size(); i++) {
-         for(int j = 0; j < XLine.size(); j++) {
-            if (inputDataLine.get(i) == XLineArray[j]) {
-              this.deleteArrayIndex(XLineArray, j);
-              tempValue++;
-            }
-         }
-       }
+    for(int i = 0; i < inputDataLine.size(); i++) {
+     for(int j = 0; j < XLine.size(); j++) {
+        if (inputDataLine.get(i) == XLineArray[j]) {
+          this.deleteArrayIndex(XLineArray, j);
+          tempValue++;
+        }
+     }
+    }
 
     for (int i = 0; i < XLineArray.length - tempValue; i++) {
       result.add(XLineArray[i] );
     }
 
-       return result;
+    return result;
   }
 
 
@@ -58,10 +58,10 @@ public class BednarekIterations {
       inputData.add(new ArrayList<Integer>());
     }
 
-    this.addEdge(inputData, 0, 4);
-    this.addEdge(inputData, 1, 4);
+    this.addEdge(inputData, 0, 1);
+    this.addEdge(inputData, 1, 2);
+    this.addEdge(inputData, 2, 3);
     this.addEdge(inputData, 2, 4);
-    this.addEdge(inputData, 3, 4);
 
     return inputData;
   }
@@ -85,30 +85,6 @@ public class BednarekIterations {
 
      return X;
   }
-
-//  void setNoAdjArray( int k) {
-//    int index;
-//
-//    int temp = 0;
-//    this.initPeaksArray(k);
-//
-//    for(int i = 0; i < this.adjArray.get(k).size(); i++) {
-//      for (int j = 0; j < this.peaksArray.length; j++) {
-//        if (this.adjArray.get(k).get(i) == this.peaksArray[j]) {
-//          this.deleteArrayIndex(this.peaksArray, j);
-//          temp++;
-//        }
-//
-//      }
-//    }
-//    /creez matricea Yk prin copierea din array-ul modificat Xk minus nr de elemente care au fost sterse
-//        this.noAdjArray = new int[this.peaksArray.length - temp];
-//
-//        for (int i = 0; i < this.peaksArray.length - temp; i++){
-//            this.noAdjArray[i] = this.peaksArray[i];
-//        }
-//
-//    }
 
 
   // Step 2
