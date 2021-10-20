@@ -6,16 +6,15 @@ public class PeaksCoverage extends Graph {
 
 //    gasesc varful cu cele mai multe muchii
     void findBiggestSize() {
+        this.index = 0;
 
-        this.biggestSize = this.adjArray.get(0).size();
+        this.biggestSize = 0;
 
         for (int i = 0; i< this.adjArray.size(); i++) {
-           if ( this.biggestSize < this.adjArray.get(i).size()) {
+           if ( this.biggestSize < this.adjArray.get(i).size() && this.adjArray.get(i).get(0) != -1) {
                this.biggestSize = this.adjArray.get(i).size();
                this.index = i;
-            } else {
-               this.index = -1;
-           }
+            }
         }
     }
 
@@ -54,6 +53,12 @@ public class PeaksCoverage extends Graph {
         return stopValue;
     }
 
+    void setMinusListRow(ArrayList<ArrayList<Integer>> arrayList, int k) {
+         for (int i = 0; i < arrayList.get(k).size(); i++) {
+             arrayList.get(k).set(i, -1);
+         }
+    }
+
 
     void setPeaksCoverage() {
         if (this.setStopCondition()) {
@@ -62,9 +67,7 @@ public class PeaksCoverage extends Graph {
             this.findBiggestSize();
             System.out.println("=================>" + this.index);
             System.out.println("=================>" + this.adjArray.get(this.index));
-            if (this.index != -1) {
-                this.adjArray.remove(this.index);
-            }
+            this.setMinusListRow(this.adjArray, index);
             this.setMinusEdgesArray();
             this.setPeaksCoverage();
         }
