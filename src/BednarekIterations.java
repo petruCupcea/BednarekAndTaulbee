@@ -1,55 +1,13 @@
 import java.util.ArrayList;
 
-public class BednarekIterations {
+public class BednarekIterations extends OperationsForSets{
 
   int k = 0;
 
 
   BednarekIterations() {
-    ArrayList<ArrayList<Integer>> inputData = this.getInputData();
-    ArrayList<ArrayList<Integer>> X = this.calculateArrayX(inputData.size());
-    ArrayList<ArrayList<Integer>> Y = this.calculateArrayY(inputData, X);
-//    int L = this.calculateArrayL(inputData, X, Y);
-    System.out.println("Date de intrare:");
-    System.out.println(inputData);
-    System.out.println("Multimile X :");
-    System.out.println(X);
-    System.out.println("Multimile Y :");
-    System.out.println(Y);
+    System.out.println(this.calculateArrayL());
   }
-
-
-  void deleteArrayIndex(int[] array, int k) {
-    for (int i = k; i < array.length - 1; i++) {
-      array[i] = array[i+1];
-    }
-  }
-
-  ArrayList<Integer> getYLine (ArrayList<Integer> inputDataLine, ArrayList<Integer> XLine) {
-    int tempValue = 0;
-    int[] XLineArray = new int[XLine.size()];
-    ArrayList<Integer> result = new ArrayList<Integer>();
-
-    for (int i = 0; i < XLineArray.length; i++) {
-      XLineArray[i] = XLine.get(i);
-    }
-
-    for(int i = 0; i < inputDataLine.size(); i++) {
-     for(int j = 0; j < XLine.size(); j++) {
-        if (inputDataLine.get(i) == XLineArray[j]) {
-          this.deleteArrayIndex(XLineArray, j);
-          tempValue++;
-        }
-     }
-    }
-
-    for (int i = 0; i < XLineArray.length - tempValue; i++) {
-      result.add(XLineArray[i] );
-    }
-
-    return result;
-  }
-
 
   ArrayList<ArrayList<Integer>> getInputData() {
     int size = 5;
@@ -102,27 +60,45 @@ public class BednarekIterations {
   }
 
   //Step 3
-  ArrayList<Integer> calculateIPrime(ArrayList<Integer> L ,ArrayList<Integer> Y) {
+  ArrayList<Integer> calculateIPrime(ArrayList<ArrayList<Integer>> L ,ArrayList<Integer> YRow) {
     ArrayList<Integer> Iprime = new ArrayList<Integer>();
 
-
-
+      Iprime = this.intersectionOfSets(L, YRow);
     return Iprime;
   }
 
 
-//  int [] calculateArrayL(inputData, X, Y) {
-//    int arrayL[] = {x1};
-//    this.calculateElementL(arrayL, X, Y, numberOfPeaks);
-//
-//    return arrayL;
-//  }
+  ArrayList<ArrayList<Integer>> calculateArrayL() {
+
+    //Step 1 and Step 2
+    ArrayList<ArrayList<Integer>> inputData = this.getInputData();
+    ArrayList<ArrayList<Integer>> X = this.calculateArrayX(inputData.size());
+    ArrayList<ArrayList<Integer>> Y = this.calculateArrayY(inputData, X);
+
+    System.out.println("Date de intrare:");
+    System.out.println(inputData);
+    System.out.println("Multimile X :");
+    System.out.println(X);
+    System.out.println("Multimile Y :");
+    System.out.println(Y);
 
 
-//  void calculateElementL(int arrayL[], X, Y, numberOfPeaks) {
-//    // Step 3
-//    Iprime = this.calculateIprime(arrayL, Y);
-//    // Step 4
+    ArrayList<ArrayList<Integer>> L = new ArrayList<ArrayList<Integer>>();
+    L.add(new ArrayList<Integer>());
+
+    L.get(0).add(0);
+
+    // Step 3
+    ArrayList<Integer> IPrime = this.calculateIPrime(L, Y.get(1));
+
+    System.out.println("Iprime : ");
+    System.out.println(IPrime);
+
+    //Step 4
+    System.out.println("Include function test: " + this.includeInBiggerSet(X));
+
+
+    // Step 4
 //    I = this.calculateI(Iprime);
 //    // Step 5
 //    Lprime = this.calculateLprime(arrayL, Y);
@@ -135,6 +111,41 @@ public class BednarekIterations {
 //      this.k++;
 //      this.calculateElementL(arrayL, X, Y, numberOfPeaks);
 //    }
-//  }
+
+    return L;
+  }
+
+
+  //functia folosita pentru a afla fiecare linie a Y
+  ArrayList<Integer> getYLine (ArrayList<Integer> inputDataLine, ArrayList<Integer> XLine) {
+    int tempValue = 0;
+    int[] XLineArray = new int[XLine.size()];
+    ArrayList<Integer> result = new ArrayList<Integer>();
+
+    for (int i = 0; i < XLineArray.length; i++) {
+      XLineArray[i] = XLine.get(i);
+    }
+
+    for(int i = 0; i < inputDataLine.size(); i++) {
+      for(int j = 0; j < XLine.size(); j++) {
+        if (inputDataLine.get(i) == XLineArray[j]) {
+          this.deleteArrayIndex(XLineArray, j);
+          tempValue++;
+        }
+      }
+    }
+
+    for (int i = 0; i < XLineArray.length - tempValue; i++) {
+      result.add(XLineArray[i] );
+    }
+
+    return result;
+  }
+
+  void deleteArrayIndex(int[] array, int k) {
+    for (int i = k; i < array.length - 1; i++) {
+      array[i] = array[i+1];
+    }
+  }
 
 }
