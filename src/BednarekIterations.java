@@ -101,6 +101,15 @@ public class BednarekIterations {
     return Y;
   }
 
+  //Step 3
+  ArrayList<Integer> calculateIPrime(ArrayList<Integer> L ,ArrayList<Integer> Y) {
+    ArrayList<Integer> Iprime = new ArrayList<Integer>();
+
+
+
+    return Iprime;
+  }
+
 
 //  int [] calculateArrayL(inputData, X, Y) {
 //    int arrayL[] = {x1};
