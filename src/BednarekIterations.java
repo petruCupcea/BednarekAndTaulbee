@@ -80,10 +80,25 @@ public class BednarekIterations extends OperationsForSets{
 
     return result;
   }
-//
-//  ArrayList<ArrayList<Integer>> calculateLPrime() {
-//
-//  }
+
+  ArrayList<ArrayList<Integer>> calculateLPrime(ArrayList<ArrayList<Integer>> L,
+                                                ArrayList<Integer> Y,
+                                                ArrayList<Integer> X,
+                                                ArrayList<ArrayList<Integer>> I) {
+     ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+
+
+     for(int i = 0; i < L.size(); i++) {
+
+       if (compareRows(L.get(i), Y)) {
+         result.addAll(this.reunionWithNextPeak(L.get(i), X.get(X.size()-1)));
+       } else {
+
+       }
+     }
+
+     return result;
+  }
 
 
   ArrayList<ArrayList<Integer>> calculateArrayL() {
@@ -108,14 +123,14 @@ public class BednarekIterations extends OperationsForSets{
 
 
     L.get(0).add(0);
-    L.get(0).add(2);
-    L.get(1).add(0);
-    L.get(1).add(3);
-    L.get(2).add(1);
-    L.get(2).add(3);
+//    L.get(0).add(2);
+//    L.get(1).add(1);
+//    L.get(1).add(3);
+//    L.get(2).add(1);
+//    L.get(2).add(3);
 
     // Step 3
-    ArrayList<ArrayList<Integer>> IPrime = this.calculateIPrime(L, Y.get(3));
+    ArrayList<ArrayList<Integer>> IPrime = this.calculateIPrime(L, Y.get(1));
 
     System.out.println("Iprime : ");
     System.out.println(IPrime);
@@ -126,12 +141,15 @@ public class BednarekIterations extends OperationsForSets{
     System.out.println("I : ");
     System.out.println(I);
 
-//    // Step 5
-//    Lprime = this.calculateLprime(L, Y.get(k));
+    // Step 5
+    ArrayList<ArrayList<Integer>> LPrime = new ArrayList<ArrayList<Integer>>();
+    LPrime = this.calculateLPrime(L , Y.get(1), X.get(1), I);
+    System.out.println("LPrime : ");
+    System.out.println(LPrime);
 //    // Step 6
-//    L[k+1] = this.calculateLItem(Lprime);
-//    arrayL.add(L);
-//
+    L = this.includeInBiggerSet(LPrime);
+    System.out.println("L : ");
+    System.out.println(L);
 //    // Step 7
 //    if (this.k < numberOfPeaks) {
 //      this.k++;

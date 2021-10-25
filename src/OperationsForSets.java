@@ -111,4 +111,27 @@ public class OperationsForSets {
      return set;
   }
 
+  ArrayList<ArrayList<Integer>> reunionWithNextPeak(ArrayList<Integer> row, int x) {
+     ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+
+     result.add(new ArrayList<Integer>());
+     result.add(row);
+     result.add(new ArrayList<Integer>());
+     result.get(1).add(x);
+
+     return result;
+  }
+
+  boolean compareRowWithSet(ArrayList<Integer> row, ArrayList<ArrayList<Integer>> set) {
+    boolean result = false;
+
+    for(int i = 0; i < set.size(); i++) {
+      if(compareRows(row, set.get(i))){
+        result = true;
+      }
+    }
+
+    return result;
+  }
+
 }
