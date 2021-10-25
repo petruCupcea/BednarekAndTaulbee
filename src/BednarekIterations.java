@@ -86,21 +86,25 @@ public class BednarekIterations extends OperationsForSets{
                                                 ArrayList<Integer> X,
                                                 ArrayList<ArrayList<Integer>> I) {
      ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+     ArrayList<Integer> tempRow = new ArrayList<Integer>();
 
 
      for(int i = 0; i < L.size(); i++) {
+       tempRow = this.intersectionOfSets(L.get(i), Y);
 
        if (compareRows(L.get(i), Y)) {
-         result.addAll(this.reunionWithNextPeak(L.get(i), X.get(X.size()-1)));
+         result.addAll(this.reunionWithNextPeak(L.get(i), X.get(X.size()-1) ));
+       } else if(this.compareRowWithSet(tempRow, I)){
+         result.addAll(this.reunionWithNextPeak(tempRow, X.get(X.size()-1) ));
        } else {
-
+         result.add(L.get(i));
        }
      }
 
      return result;
   }
 
-
+//functia de baza
   ArrayList<ArrayList<Integer>> calculateArrayL() {
 
     //Step 1 and Step 2
@@ -124,13 +128,13 @@ public class BednarekIterations extends OperationsForSets{
 
     L.get(0).add(0);
 //    L.get(0).add(2);
-//    L.get(1).add(1);
+    L.get(1).add(1);
 //    L.get(1).add(3);
 //    L.get(2).add(1);
 //    L.get(2).add(3);
 
     // Step 3
-    ArrayList<ArrayList<Integer>> IPrime = this.calculateIPrime(L, Y.get(1));
+    ArrayList<ArrayList<Integer>> IPrime = this.calculateIPrime(L, Y.get(2));
 
     System.out.println("Iprime : ");
     System.out.println(IPrime);
@@ -143,7 +147,7 @@ public class BednarekIterations extends OperationsForSets{
 
     // Step 5
     ArrayList<ArrayList<Integer>> LPrime = new ArrayList<ArrayList<Integer>>();
-    LPrime = this.calculateLPrime(L , Y.get(1), X.get(1), I);
+    LPrime = this.calculateLPrime(L , Y.get(2), X.get(2), I);
     System.out.println("LPrime : ");
     System.out.println(LPrime);
 //    // Step 6
