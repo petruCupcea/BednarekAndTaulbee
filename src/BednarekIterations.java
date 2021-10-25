@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class BednarekIterations extends OperationsForSets{
 
@@ -6,7 +7,7 @@ public class BednarekIterations extends OperationsForSets{
 
 
   BednarekIterations() {
-    System.out.println(this.calculateArrayL());
+    this.calculateArrayL();
   }
 
   ArrayList<ArrayList<Integer>> getInputData() {
@@ -60,12 +61,29 @@ public class BednarekIterations extends OperationsForSets{
   }
 
   //Step 3
-  ArrayList<Integer> calculateIPrime(ArrayList<ArrayList<Integer>> L ,ArrayList<Integer> YRow) {
-    ArrayList<Integer> Iprime = new ArrayList<Integer>();
+  ArrayList<ArrayList<Integer>> calculateIPrime(ArrayList<ArrayList<Integer>> L ,ArrayList<Integer> YRow) {
+    ArrayList<ArrayList<Integer>> Iprime = new ArrayList<ArrayList<Integer>>();
 
-      Iprime = this.intersectionOfSets(L, YRow);
+    for(int i = 0; i < L.size(); i++) {
+      Iprime.add(new ArrayList<Integer>());
+      Iprime.add(this.intersectionOfSets(L.get(i), YRow));
+    }
+
     return Iprime;
   }
+
+  //Step4
+  ArrayList<ArrayList<Integer>> calculateI(ArrayList<ArrayList<Integer>> set) {
+    ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+
+    result = includeInBiggerSet(set);
+
+    return result;
+  }
+//
+//  ArrayList<ArrayList<Integer>> calculateLPrime() {
+//
+//  }
 
 
   ArrayList<ArrayList<Integer>> calculateArrayL() {
@@ -85,23 +103,31 @@ public class BednarekIterations extends OperationsForSets{
 
     ArrayList<ArrayList<Integer>> L = new ArrayList<ArrayList<Integer>>();
     L.add(new ArrayList<Integer>());
+    L.add(new ArrayList<Integer>());
+    L.add(new ArrayList<Integer>());
+
 
     L.get(0).add(0);
+    L.get(0).add(2);
+    L.get(1).add(0);
+    L.get(1).add(3);
+    L.get(2).add(1);
+    L.get(2).add(3);
 
     // Step 3
-    ArrayList<Integer> IPrime = this.calculateIPrime(L, Y.get(1));
+    ArrayList<ArrayList<Integer>> IPrime = this.calculateIPrime(L, Y.get(3));
 
     System.out.println("Iprime : ");
     System.out.println(IPrime);
 
     //Step 4
-    System.out.println("Include function test: " + this.includeInBiggerSet(X));
+    ArrayList<ArrayList<Integer>> I = new ArrayList<ArrayList<Integer>>();
+    I = this.calculateI(IPrime);
+    System.out.println("I : ");
+    System.out.println(I);
 
-
-    // Step 4
-//    I = this.calculateI(Iprime);
 //    // Step 5
-//    Lprime = this.calculateLprime(arrayL, Y);
+//    Lprime = this.calculateLprime(L, Y.get(k));
 //    // Step 6
 //    L[k+1] = this.calculateLItem(Lprime);
 //    arrayL.add(L);

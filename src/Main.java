@@ -6,8 +6,8 @@ public class Main {
 //        BednarekAndTaulbee obj = new BednarekAndTaulbee();
 //        Matrix obj1 = new Matrix();
 //        DFSandBFS obj2 = new DFSandBFS();
-        PeaksCoverage obj3 = new PeaksCoverage();
-//        BednarekIterations obj4 = new BednarekIterations();
+//        PeaksCoverage obj3 = new PeaksCoverage();
+        BednarekIterations obj4 = new BednarekIterations();
 
 
 //      Bednarek And Taulbee rulare doar Yk+1
@@ -35,8 +35,8 @@ public class Main {
 //         algoritmul de citire a grafului in adancime (functioneaza de la varful citit de la tastatura)
 //        obj2.DFS();
 
-          obj3.readPeaksAdj();
-          obj3.setPeaksCoverage();
+//          obj3.readPeaksAdj();
+//          obj3.setPeaksCoverage();
 
     }
 }
