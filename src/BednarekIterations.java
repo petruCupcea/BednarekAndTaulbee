@@ -3,9 +3,15 @@ import java.util.ArrayList;
 
 public class BednarekIterations extends OperationsForSets{
   ArrayList<ArrayList<Integer>> LPrime;
+  ArrayList<ArrayList<Integer>> X;
+  ArrayList<ArrayList<Integer>> Y;
+  ArrayList<ArrayList<Integer>> inputData;
 
   BednarekIterations() {
     this.LPrime = new ArrayList<ArrayList<Integer>>();
+    this.inputData = this.getInputData();
+     this.X = this.calculateArrayX(inputData.size());
+     this.Y = this.calculateArrayY(inputData, this.X);
     ArrayList<ArrayList<Integer>> L= new ArrayList<ArrayList<Integer>>();
     this.calculateArrayL(0, L);
   }
@@ -112,14 +118,10 @@ public class BednarekIterations extends OperationsForSets{
   ArrayList<ArrayList<Integer>> calculateArrayL(int k, ArrayList<ArrayList<Integer>> L) {
 
     //Step 1 and Step 2
-    ArrayList<ArrayList<Integer>> inputData = this.getInputData();
-    ArrayList<ArrayList<Integer>> X = this.calculateArrayX(inputData.size());
-    ArrayList<ArrayList<Integer>> Y = this.calculateArrayY(inputData, X);
-
     System.out.println("Iteratia k: ");
     System.out.println(k+1);
     System.out.println("Multimea Y : ");
-    System.out.println(Y.get(k+1));
+    System.out.println(this.Y.get(k+1));
 
     if(k == 0) {
       L.add(new ArrayList<Integer>());
@@ -128,7 +130,7 @@ public class BednarekIterations extends OperationsForSets{
     }
 
     // Step 3
-    ArrayList<ArrayList<Integer>> IPrime = this.calculateIPrime(L, Y.get(k+1));
+    ArrayList<ArrayList<Integer>> IPrime = this.calculateIPrime(L, this.Y.get(k+1));
 
     //Step 4
     ArrayList<ArrayList<Integer>> I = new ArrayList<ArrayList<Integer>>();
@@ -137,7 +139,7 @@ public class BednarekIterations extends OperationsForSets{
     System.out.println(I);
 
     // Step 5
-    this.LPrime.addAll(this.calculateLPrime(L , Y.get(k+1), X.get(k+1), I));
+    this.LPrime.addAll(this.calculateLPrime(L , Y.get(k+1), this.X.get(k+1), I));
     this.LPrime = includeInBiggerSet(this.LPrime);
 
     // Step 6
@@ -146,7 +148,7 @@ public class BednarekIterations extends OperationsForSets{
     System.out.println(L);
 
     // Step 7
-    if (k < X.size()-2) {
+    if (k < this.X.size()-2) {
       k++;
       this.calculateArrayL(k, L);
     }
