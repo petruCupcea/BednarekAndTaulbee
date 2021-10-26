@@ -17,16 +17,27 @@ public class BednarekIterations extends OperationsForSets{
   }
 
   ArrayList<ArrayList<Integer>> getInputData() {
+//    int size = 7;
     int size = 5;
     ArrayList<ArrayList<Integer>> inputData = new ArrayList<ArrayList<Integer>>(size);
     for (int i = 0; i < size; i++) {
       inputData.add(new ArrayList<Integer>());
     }
 
-    this.addEdge(inputData, 0, 1);
-    this.addEdge(inputData, 1, 2);
-    this.addEdge(inputData, 2, 3);
-    this.addEdge(inputData, 2, 4);
+    this.addEdge(inputData,0,1);
+    this.addEdge(inputData,1,2);
+    this.addEdge(inputData,2,3);
+    this.addEdge(inputData,2,4);
+//    this.addEdge(inputData, 0, 1);
+//    this.addEdge(inputData, 0, 2);
+//    this.addEdge(inputData, 0, 3);
+//    this.addEdge(inputData, 1, 2);
+//    this.addEdge(inputData, 1, 3);
+//    this.addEdge(inputData, 2, 3);
+//    this.addEdge(inputData, 2, 4);
+//    this.addEdge(inputData, 2, 6);
+//    this.addEdge(inputData, 3, 4);
+//    this.addEdge(inputData, 4, 5);
 
     return inputData;
   }
@@ -59,7 +70,7 @@ public class BednarekIterations extends OperationsForSets{
     Y.add(new ArrayList<Integer>());
     Y.get(0).add(0);
 
-    for (int i = 1; i < 5; i++) {
+    for (int i = 1; i < inputData.size(); i++) {
       Y.add(this.getYLine(inputData.get(i), X.get(i)));
     }
 
