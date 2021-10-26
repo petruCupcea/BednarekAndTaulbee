@@ -1,13 +1,12 @@
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class BednarekIterations extends OperationsForSets{
 
-  int k = 0;
-
-
   BednarekIterations() {
-    this.calculateArrayL();
+    ArrayList<ArrayList<Integer>> L = new ArrayList<ArrayList<Integer>>();
+    L.add(new ArrayList<Integer>());
+    L.get(0).add(0);
+    L = this.calculateArrayL(0, L);
   }
 
   ArrayList<ArrayList<Integer>> getInputData() {
@@ -105,7 +104,7 @@ public class BednarekIterations extends OperationsForSets{
   }
 
 //functia de baza
-  ArrayList<ArrayList<Integer>> calculateArrayL() {
+  ArrayList<ArrayList<Integer>> calculateArrayL(int k, ArrayList<ArrayList<Integer>> L) {
 
     //Step 1 and Step 2
     ArrayList<ArrayList<Integer>> inputData = this.getInputData();
@@ -119,22 +118,8 @@ public class BednarekIterations extends OperationsForSets{
     System.out.println("Multimile Y :");
     System.out.println(Y);
 
-
-    ArrayList<ArrayList<Integer>> L = new ArrayList<ArrayList<Integer>>();
-    L.add(new ArrayList<Integer>());
-    L.add(new ArrayList<Integer>());
-    L.add(new ArrayList<Integer>());
-
-
-    L.get(0).add(0);
-//    L.get(0).add(2);
-    L.get(1).add(1);
-//    L.get(1).add(3);
-//    L.get(2).add(1);
-//    L.get(2).add(3);
-
     // Step 3
-    ArrayList<ArrayList<Integer>> IPrime = this.calculateIPrime(L, Y.get(2));
+    ArrayList<ArrayList<Integer>> IPrime = this.calculateIPrime(L, Y.get(k+1));
 
     System.out.println("Iprime : ");
     System.out.println(IPrime);
@@ -147,7 +132,7 @@ public class BednarekIterations extends OperationsForSets{
 
     // Step 5
     ArrayList<ArrayList<Integer>> LPrime = new ArrayList<ArrayList<Integer>>();
-    LPrime = this.calculateLPrime(L , Y.get(2), X.get(2), I);
+    LPrime = this.calculateLPrime(L , Y.get(k+1), X.get(k+1), I);
     System.out.println("LPrime : ");
     System.out.println(LPrime);
 //    // Step 6
