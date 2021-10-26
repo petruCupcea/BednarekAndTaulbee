@@ -1,12 +1,13 @@
 import java.util.ArrayList;
 
+
 public class BednarekIterations extends OperationsForSets{
+  ArrayList<ArrayList<Integer>> LPrime;
 
   BednarekIterations() {
-    ArrayList<ArrayList<Integer>> L = new ArrayList<ArrayList<Integer>>();
-    L.add(new ArrayList<Integer>());
-    L.get(0).add(0);
-    L = this.calculateArrayL(0, L);
+    this.LPrime = new ArrayList<ArrayList<Integer>>();
+    ArrayList<ArrayList<Integer>> L= new ArrayList<ArrayList<Integer>>();
+    this.calculateArrayL(0, L);
   }
 
   ArrayList<ArrayList<Integer>> getInputData() {
@@ -80,6 +81,8 @@ public class BednarekIterations extends OperationsForSets{
     return result;
   }
 
+
+
   ArrayList<ArrayList<Integer>> calculateLPrime(ArrayList<ArrayList<Integer>> L,
                                                 ArrayList<Integer> Y,
                                                 ArrayList<Integer> X,
@@ -103,6 +106,8 @@ public class BednarekIterations extends OperationsForSets{
      return result;
   }
 
+
+
 //functia de baza
   ArrayList<ArrayList<Integer>> calculateArrayL(int k, ArrayList<ArrayList<Integer>> L) {
 
@@ -111,18 +116,19 @@ public class BednarekIterations extends OperationsForSets{
     ArrayList<ArrayList<Integer>> X = this.calculateArrayX(inputData.size());
     ArrayList<ArrayList<Integer>> Y = this.calculateArrayY(inputData, X);
 
-    System.out.println("Date de intrare:");
-    System.out.println(inputData);
-    System.out.println("Multimile X :");
-    System.out.println(X);
+    System.out.println("Iteratia k:");
+    System.out.println(k+1);
     System.out.println("Multimile Y :");
-    System.out.println(Y);
+    System.out.println(Y.get(k+1));
+
+    if(k == 0) {
+      L.add(new ArrayList<Integer>());
+      L.add(new ArrayList<Integer>());
+      L.get(0).add(0);
+    }
 
     // Step 3
     ArrayList<ArrayList<Integer>> IPrime = this.calculateIPrime(L, Y.get(k+1));
-
-    System.out.println("Iprime : ");
-    System.out.println(IPrime);
 
     //Step 4
     ArrayList<ArrayList<Integer>> I = new ArrayList<ArrayList<Integer>>();
@@ -131,22 +137,23 @@ public class BednarekIterations extends OperationsForSets{
     System.out.println(I);
 
     // Step 5
-    ArrayList<ArrayList<Integer>> LPrime = new ArrayList<ArrayList<Integer>>();
-    LPrime = this.calculateLPrime(L , Y.get(k+1), X.get(k+1), I);
-    System.out.println("LPrime : ");
-    System.out.println(LPrime);
-//    // Step 6
-    L = this.includeInBiggerSet(LPrime);
+    this.LPrime.addAll(this.calculateLPrime(L , Y.get(k+1), X.get(k+1), I));
+    this.LPrime = includeInBiggerSet(this.LPrime);
+
+    // Step 6
+    L = this.includeInBiggerSet(this.LPrime);
     System.out.println("L : ");
     System.out.println(L);
-//    // Step 7
-//    if (this.k < numberOfPeaks) {
-//      this.k++;
-//      this.calculateElementL(arrayL, X, Y, numberOfPeaks);
-//    }
 
+    // Step 7
+    if (k < X.size()-2) {
+      k++;
+      this.calculateArrayL(k, L);
+    }
     return L;
   }
+
+
 
 
   //functia folosita pentru a afla fiecare linie a Y
