@@ -116,9 +116,9 @@ public class BednarekIterations extends OperationsForSets{
     ArrayList<ArrayList<Integer>> X = this.calculateArrayX(inputData.size());
     ArrayList<ArrayList<Integer>> Y = this.calculateArrayY(inputData, X);
 
-    System.out.println("Iteratia k:");
+    System.out.println("Iteratia k: ");
     System.out.println(k+1);
-    System.out.println("Multimile Y :");
+    System.out.println("Multimea Y : ");
     System.out.println(Y.get(k+1));
 
     if(k == 0) {
@@ -133,7 +133,7 @@ public class BednarekIterations extends OperationsForSets{
     //Step 4
     ArrayList<ArrayList<Integer>> I = new ArrayList<ArrayList<Integer>>();
     I = this.calculateI(IPrime);
-    System.out.println("I : ");
+    System.out.println("Multimea I : ");
     System.out.println(I);
 
     // Step 5
@@ -142,7 +142,7 @@ public class BednarekIterations extends OperationsForSets{
 
     // Step 6
     L = this.includeInBiggerSet(this.LPrime);
-    System.out.println("L : ");
+    System.out.println("Multimea L : ");
     System.out.println(L);
 
     // Step 7
